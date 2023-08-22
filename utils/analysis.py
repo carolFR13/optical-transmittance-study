@@ -77,7 +77,8 @@ class Angles:
 
         def f(wavelength):
 
-            obj = Angles(self.alpha, wavelength, self.theta_ext, self.theta_int)
+            theta_int =  Angles(self.alpha, wavelength, theta_ext = self.theta_ext).int_angle()
+            obj = Angles(self.alpha, wavelength, self.theta_ext, theta_int)
             
             theta_2 = obj.int_angle()
             theta_c = obj.int_critical_angle()
@@ -87,7 +88,7 @@ class Angles:
             else:
                 return theta_2 - theta_c
 
-        lambda_c = fsolve(f,x0 = 0.5)
+        lambda_c = fsolve(f,x0 = 0.3)
 
         return lambda_c[0]
 
@@ -173,6 +174,7 @@ class Transmittance:
                     T.append(self._fabry_perot(self.distance,self.wavelength[i], 
                                                self.theta_int[i],self.n_air[i],self.n_glass[i])[0])
                 else:
+                    # print('lambda:',self.wavelength[i])
                     T.append(self._frustrated_total_int_reflection(self.distance,self.wavelength[i], 
                                                                    self.theta_int[i],self.n_air[i],self.n_glass[i])[0])
         else:
