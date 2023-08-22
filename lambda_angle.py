@@ -40,7 +40,7 @@ for i in range(len(values)):
                                                                                               value_2 = values[i+1],
                                                                                               value_3 = values[i+2])
 
-        print(lambda_1, lambda_2)
+        # print(lambda_1, lambda_2)
 
         if round(lambda_1*1e-3, 3) not in [round(val, 3) for val in maximums]: 
             maximums.append(lambda_1*1e-3)
@@ -51,7 +51,8 @@ for i in range(len(values)):
     except Exception:
         break
 
-maximums = maximums[1:-1] # we don't consider first and last maximums for being too close to the limits
+maximums = maximums[1:] # we don't consider first maximum for being too close to the limits
+print(maximums, len(maximums))
 
 
 '''
@@ -67,7 +68,7 @@ theta_ext = 24 * np.pi/180
 min_0 = 1000
 
 for alpha in a:
-    print('\n', alpha*180/np.pi)
+    # print('\n', alpha*180/np.pi)
     d = []
 
     for i in range(len(maximums)):
