@@ -56,28 +56,30 @@ the relative distance is computed with the values 1,2,3 found for the experiment
 graph since we want both graphs to look alike (?)
 '''
 
-d = np.linspace(2.6,4,1000) * 10**(-6)  #we expect the distance to be near 3 um
+d = np.linspace(2.6,4,100) * 10**(-6)  #we expect the distance to be near 3 um
 
 min = 1000
 possible_d = []
+min_vector= []
 
-# for dist in d:
+for dist in d:
 
-#     T_teo = Transmittance(dist, alpha, wavelength, theta_ext).transmittance()
-#     _ , _ , theta_1 , theta_2 = Maximums( T = T_teo).parabolic(x = (theta_int*180/np.pi), 
-#                                                            value_1 = value_1, value_2 = value_2, value_3 = value_3)
+    T_teo = Transmittance(dist, alpha, wavelength, theta_ext).transmittance()
+    _ , _ , theta_1 , theta_2 = Maximums( T = T_teo).parabolic(x = (theta_int*180/np.pi), 
+                                                           value_1 = value_1, value_2 = value_2, value_3 = value_3)
     
-#     relat_dist_teo = abs(theta_1-theta_2)
+    relat_dist_teo = abs(theta_1-theta_2)
+    min_vector.append(abs(relat_dist_exp - relat_dist_teo))
+    if abs(relat_dist_exp - relat_dist_teo) < min:
+        min = abs(relat_dist_exp - relat_dist_teo)
+        final_d = dist
+    else:
+        continue
 
-#     if abs(relat_dist_exp - relat_dist_teo) < min:
-#         min = abs(relat_dist_exp - relat_dist_teo)
-#         final_d = dist
-#     else:
-#         continue
+print(final_d)
+print(min_vector)
 
-# print(final_d)
-
-final_d = 3.484284284284284e-06
+# final_d = 3.484284284284284e-06
 T_teo = Transmittance(final_d, alpha, wavelength, theta_ext).transmittance()
 
 plt.figure()
@@ -90,6 +92,12 @@ plt.show()
 
 
 
-    
+plt.figure()
+plt.plot(d, min_vector,'.')
+plt.grid(alpha = 0.7)
+plt.title(r'Obtention of distance between prisms' )
+plt.xlabel(r' d ($\mu m$)')
+plt.ylabel(r'|$\Delta d_{exp}$-$\Delta d_{teo}$|')
+plt.show()
 
 
