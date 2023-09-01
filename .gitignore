@@ -1,0 +1,23 @@
+# Virtual environment
+*venv*
+
+# macOS stuff
+.DS_Store
+
+# Cache files
+*cache*
+*.bkp
+*.dtmp
+*.ipynb_checkpoints
+
+# Data files
+data/sources/
+
+# User codes
+graphs
+test.py
+
+# Generated graphs
+*.png
+
+
