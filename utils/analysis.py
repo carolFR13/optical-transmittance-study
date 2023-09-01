@@ -5,7 +5,6 @@ from scipy.interpolate import interp1d
 from scipy.optimize import curve_fit
 from .utils import n_air,n_glass, parabola, Index
 from scipy import constants as sc
-import matplotlib.pyplot as plt
 
 
 class Angles:
