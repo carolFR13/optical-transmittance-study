@@ -56,7 +56,7 @@ the relative distance is computed with the values 1,2,3 found for the experiment
 graph since we want both graphs to look alike (?)
 '''
 
-d = np.linspace(2.6,4,100) * 10**(-6)  #we expect the distance to be near 3 um
+d = np.linspace(2.6,4,1000) * 10**(-6)  #we expect the distance to be near 3 um
 
 min = 1000
 possible_d = []
@@ -77,7 +77,7 @@ for dist in d:
         continue
 
 print(final_d)
-print(min_vector)
+#print(min_vector)
 
 # final_d = 3.484284284284284e-06
 T_teo = Transmittance(final_d, alpha, wavelength, theta_ext).transmittance()
