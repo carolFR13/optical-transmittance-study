@@ -46,7 +46,7 @@ for i in range(len(values)):
 
 print('24°:',maximums, len(maximums))
 
-alpha = 45.21341341341341*np.pi/180
+alpha = 45.214414414414414 * np.pi/180
 theta_ext = ufloat(24, 0.1/(12**(1/2))) * np.pi/180
 
 d = []

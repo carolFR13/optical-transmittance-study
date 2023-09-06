@@ -5,7 +5,7 @@ from scipy.interpolate import interp1d
 from scipy.optimize import curve_fit
 from .utils import n_air,n_glass, parabola, Index
 from scipy import constants as sc
-
+from uncertainties import umath
 
 class Angles:
     '''
@@ -31,16 +31,24 @@ class Angles:
 
         return None 
 
-    def int_angle(self):
+    def int_angle(self, uncertainty: bool = False):
         '''
         method to compute the internal angle from the external one
         (the variable theta_ext needs to be defined)
-        '''
 
+        it allows you to compute internal angle with its uncertainty given an external 
+        angle in ufloat format
+        '''
         try:
-            theta_1 = np.arcsin((self.n_air *np.sin(self.theta_ext))/self.n_glass)
-            theta_2 = self.alpha - theta_1
-            return theta_2
+            if uncertainty:
+                theta_1 = umath.asin((self.n_air *umath.sin(self.theta_ext))/self.n_glass)
+                theta_2 = self.alpha - theta_1
+                return theta_2
+
+            else:
+                theta_1 = np.arcsin((self.n_air *np.sin(self.theta_ext))/self.n_glass)
+                theta_2 = self.alpha - theta_1
+                return theta_2
         
         except Exception:
             print('The variable theta_ext is not defined.')
@@ -593,7 +601,7 @@ class Lambda_max(Maximums):
                  lambda_1: float | None = None, lambda_2: float | None = None,
                  alpha: float | None = None, theta_ext: float | None = None,
                  value_1: float | None = None, value_2: float | None = None, 
-                 value_3: float | None = None) -> float:
+                 value_3: float | None = None, uncertainty: bool = False) -> float:
         
         '''
         method to compute the distance. you either provide the internal angles and wavelengths 
@@ -608,17 +616,19 @@ class Lambda_max(Maximums):
                 _ , _ , lambda_1, lambda_2 = self.interpolation(x = self.wavelength, value_1 = value_1, 
                                                             value_2 = value_2, value_3 = value_3)
                 
-                theta_1 = Angles(alpha = alpha, wavelength= lambda_1, theta_ext = theta_ext)
-                theta_2 = Angles(alpha = alpha, wavelength= lambda_2, theta_ext = theta_ext)
+                theta_1 = Angles(alpha = alpha, wavelength= lambda_1, theta_ext = theta_ext).int_angle(uncertainty = uncertainty)
+                theta_2 = Angles(alpha = alpha, wavelength= lambda_2, theta_ext = theta_ext).int_angle(uncertainty = uncertainty)
 
             except Exception:
-
                 print("You didn't provide the right arguments" )
 
         n_air_1 = n_air(lambda_1) ; n_air_2 = n_air(lambda_2)
         n_glass_1 = n_glass(lambda_1) ; n_glass_2 = n_glass(lambda_2)
 
+        if uncertainty:
+            d = (1/2) * ( (( n_air_2**2 - (n_glass_2*umath.sin(theta_2))**2 )**(1/2))/lambda_2 - (( n_air_1**2 - (n_glass_1*umath.sin(theta_1))**2 )**(1/2))/lambda_1  )**(-1) 
         
-        d = (1/2) * ( (( n_air_2**2 - (n_glass_2*np.sin(theta_2))**2 )**(1/2))/lambda_2 - (( n_air_1**2 - (n_glass_1*np.sin(theta_1))**2 )**(1/2))/lambda_1  )**(-1) 
+        else:
+            d = (1/2) * ( (( n_air_2**2 - (n_glass_2*np.sin(theta_2))**2 )**(1/2))/lambda_2 - (( n_air_1**2 - (n_glass_1*np.sin(theta_1))**2 )**(1/2))/lambda_1  )**(-1) 
 
         return abs(d)
