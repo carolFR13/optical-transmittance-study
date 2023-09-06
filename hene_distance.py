@@ -19,7 +19,7 @@ hene_dict = Measurements('data/sources')._hene_tnr()
 
 theta_ext, T_exp = hene_dict['T']
 
-alpha = 45.13 * np.pi/180
+alpha = 45.214414414414414 * np.pi/180
 wavelength = 0.633 #HeNe wavelength
 
 theta_int = Angles(alpha = alpha, wavelength = wavelength, theta_ext = theta_ext).int_angle() # [rad]
@@ -56,7 +56,7 @@ the relative distance is computed with the values 1,2,3 found for the experiment
 graph since we want both graphs to look alike (?)
 '''
 
-d = np.linspace(2.6,4,1000) * 10**(-6)  #we expect the distance to be near 3 um
+d = np.linspace(2.6,4,100) * 10**(-6)  #we expect the distance to be near 3 um
 
 min = 1000
 possible_d = []
@@ -77,9 +77,13 @@ for dist in d:
         continue
 
 print(final_d)
-#print(min_vector)
+print(min_vector)
 
-# final_d = 3.484284284284284e-06
+# final_d = 3.484284284284284e-06 for 45.13°
+# final_d = 3.4856856856856854e-06 for 45.21341341341341°
+# final_d = 3.487087087087087e-06 for 45.21391391391391°
+# final_d = 3.487087087087087e-06 for 45.214414414414414°
+
 T_teo = Transmittance(final_d, alpha, wavelength, theta_ext).transmittance()
 
 plt.figure()

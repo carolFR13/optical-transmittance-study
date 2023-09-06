@@ -34,7 +34,7 @@ adjustement doesn't return the right value.
 #finding theoretical and experimental values of the transmittance maximums
 
 wavelength = 0.633 
-distance = 3.484284284284284e-06 #computed in distance.py
+distance = 3.487087087087087e-06 #computed in distance.py
 alpha = 45 * np.pi/180 #arbitrary prism's angle to find maximums
 
 theta_int = Angles(alpha = alpha, wavelength = wavelength, 
