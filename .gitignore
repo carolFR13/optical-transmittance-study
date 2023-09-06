@@ -15,7 +15,7 @@ data/sources/
 
 # User codes
 graphs
-test.py
+test
 
 # Generated graphs
 *.png
