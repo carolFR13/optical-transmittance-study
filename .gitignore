@@ -15,7 +15,7 @@ data/sources/
 
 # User codes
 graphs
-test
+codes
 
 # Generated graphs
 *.png

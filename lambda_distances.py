@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils.analysis import Measurements, Lambda_max, Angles
-from utils.utils import weighted_average
+from optics import Measurements, Lambda_max, Angles, weighted_average
 from uncertainties import ufloat
 
 

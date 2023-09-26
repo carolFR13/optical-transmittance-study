@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils.analysis import Measurements, Angles, Maximums, Transmittance
-from utils.utils import Index
+from optics import Measurements, Angles, Maximums, Transmittance, Index
 
 
 '''

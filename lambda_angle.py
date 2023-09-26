@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils.analysis import Measurements, Lambda_max, Angles
+from optics import Measurements, Lambda_max, Angles
 
 '''
 code to find optimal value of the prism's angle from experimental data
