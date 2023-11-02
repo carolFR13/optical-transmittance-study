@@ -14,7 +14,7 @@ inestable method to find the optimal angle.
 
 # read experimental data 
 
-lambda_T_dict = Measurements('data/sources')._lambda_transmittance()
+lambda_T_dict = Measurements('sources')._lambda_transmittance()
 
 wavelength, T_exp = lambda_T_dict['24.0']
 
@@ -52,7 +52,7 @@ for i in range(len(values)):
         break
 
 maximums = maximums[1:] # we don't consider first maximum for being too close to the limits
-print(maximums, len(maximums))
+#print(maximums, len(maximums))
 
 
 '''
