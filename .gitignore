@@ -10,12 +10,18 @@
 *.dtmp
 *.ipynb_checkpoints
 
+# Python package
+*egg-info*
+
+
 # Data files
-data/sources/
+first-analysis/sources/
+hene-analysis/
+
 
 # User codes
 graphs
-codes
+test-codes
 
 # Generated graphs
 *.png
