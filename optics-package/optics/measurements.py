@@ -309,7 +309,7 @@ class Monochromatic:
                     index_1 = vector.index(float(init_value))
                     index_2 = vector.index(float(end_value))
                     vector_n = vector[index_1:index_2]
-                    print(key, key_2, key_3, '      ',len(vector_n))
+                    # print(key, key_2, key_3, '      ',len(vector_n))
 
                     angles = np.linspace(float(init_angle),float(end_angle),len(vector_n))
 
