@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from optics import Measurements, Angles, Maximums, Transmittance
+from utils.analysis import Measurements, Angles, Maximums, Transmittance
 
 
 '''
@@ -15,7 +15,7 @@ we start assuming a particular value of the prism's angle.
 
 # read experimental data
 
-hene_dict = Measurements('sources')._hene_tnr()
+hene_dict = Measurements('data/sources')._hene_tnr()
 
 theta_ext, T_exp = hene_dict['T']
 
@@ -77,7 +77,7 @@ for dist in d:
         continue
 
 print(final_d)
-#print(min_vector)
+print(min_vector)
 
 # final_d = 3.484284284284284e-06 for 45.13°
 # final_d = 3.4856856856856854e-06 for 45.21341341341341°

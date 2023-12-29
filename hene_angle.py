@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from optics import Measurements, Angles, Maximums, Transmittance, Index
+from utils.analysis import Measurements, Angles, Maximums, Transmittance
+from utils.utils import Index
 
 
 '''
@@ -14,7 +15,7 @@ The optimal value of alpha we will choose it to be the mean of both.
 
 # read experimental data
 
-hene_dict = Measurements('sources')._hene_tnr()
+hene_dict = Measurements('data/sources')._hene_tnr()
 
 theta_ext, T_exp = hene_dict['T']
 

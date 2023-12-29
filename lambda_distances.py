@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from optics import Measurements, Lambda_max, Angles, weighted_average
+from utils.analysis import Measurements, Lambda_max, Angles
+from utils.utils import weighted_average
 from uncertainties import ufloat
 
 
@@ -14,7 +15,7 @@ according to the manufacturer.
 
 # read experimental data 
 
-lambda_T_dict = Measurements('sources')._lambda_transmittance()
+lambda_T_dict = Measurements('data/sources')._lambda_transmittance()
 
 wavelength, T_exp_24 = lambda_T_dict['24.0']
 wavelength, T_exp_11 = lambda_T_dict['11.0']
