@@ -1,4 +1,4 @@
-# Analysis of optical transmitance in FTIR
+# Analysis of optical transmittance in FTIR
 
 This code is intended to analyse two different sets of measurements where we study the frustrated total internal reflection (FTIR).
 
